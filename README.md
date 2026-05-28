@@ -1,16 +1,16 @@
 # ⚡ AutoSysDesign
 
-A full-stack multi-agent AI application. You describe a system — 3 specialized AI agents (Architect, Tech Analyst, Solution Writer) collaborate via Google Gemini to produce a complete architecture document.
+A full-stack multi-agent AI application. You describe a system — 3 specialized AI agents (Architect, Tech Analyst, Solution Writer) collaborate via Groq-hosted Llama 3.3 70B to produce a complete architecture document.
 
-**Tech Stack:** React + Vite · FastAPI · Google Gemini 1.5 Flash (free)
+**Tech Stack:** React + Vite · FastAPI · Groq + Llama 3.3 70B
 
 ---
 
 ## 🚀 Quick Start
 
-### Step 1 — Get a Free Gemini API Key
+### Step 1 — Get a Groq API Key
 
-1. Go to: https://aistudio.google.com/app/apikey
+1. Go to your Groq console/docs to create an API key
 2. Click **"Create API key"**
 3. Copy the key
 
@@ -20,7 +20,7 @@ A full-stack multi-agent AI application. You describe a system — 3 specialized
 cd backend
 cp .env.example .env
 # Open .env and paste your API key:
-# GEMINI_API_KEY=AIza...your-key-here
+# GROQ_API_KEY=your-groq-api-key-here
 ```
 
 ### Step 3 — Start the Backend
@@ -53,19 +53,19 @@ User Input
     ▼
 ┌─────────────────────────────┐
 │  🏗️  Architect Agent         │  → High-level system design
-│  (Gemini 1.5 Flash call 1)  │    Components, patterns, scale
+│  (Groq Llama 3.3 70B call 1)│    Components, patterns, scale
 └─────────────────────────────┘
     │
     ▼
 ┌─────────────────────────────┐
 │  🔬 Tech Analyst Agent       │  → Tech stack + trade-offs
-│  (Gemini 1.5 Flash call 2)  │    Tables, comparisons, rationale
+│  (Groq Llama 3.3 70B call 2)│    Tables, comparisons, rationale
 └─────────────────────────────┘
     │
     ▼
 ┌─────────────────────────────┐
 │  ✍️  Solution Writer Agent   │  → Final unified document
-│  (Gemini 1.5 Flash call 3)  │    Roadmap, risks, quick start
+│  (Groq Llama 3.3 70B call 3)│    Roadmap, risks, quick start
 └─────────────────────────────┘
     │
     ▼
@@ -82,7 +82,7 @@ Each agent builds on the previous one's output.
 autosysdesign/
 ├── backend/
 │   ├── main.py          # FastAPI app + routes
-│   ├── agents.py        # 3-agent pipeline (Gemini)
+│   ├── agents.py        # 3-agent pipeline (Groq + Llama 3.3 70B)
 │   ├── requirements.txt
 │   └── .env.example
 └── frontend/
@@ -97,11 +97,11 @@ autosysdesign/
 
 ---
 
-## ⚠️ Gemini Free Tier Limits
+## ⚠️ Model / Rate Limits
 
-- 15 requests/minute on Gemini 1.5 Flash
-- Each chat message = 3 API calls (one per agent)
-- Effective: ~5 messages/minute — plenty for dev/demo
+- Uses Llama 3.3 70B hosted via Groq. Check Groq docs for exact rate limits.
+- Each chat message results in 3 model calls (one per agent)
+- Effective throughput depends on your Groq plan and model latency
 
 ---
 
